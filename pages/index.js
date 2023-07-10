@@ -9,6 +9,9 @@ export default function Home() {
     const { isLoading, session, error } = useSessionContext();
 
     return <>
+        <Head>
+            <title>Just Do</title>
+        </Head>
         <div className={styles.container}>
             <h1>Maximize efficiency with our to-do checklist.</h1>
             <h2>Plan, manage, and track all your projects on our customizable software.</h2>
