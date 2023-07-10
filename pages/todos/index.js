@@ -1,5 +1,7 @@
 import styles from "./index.module.scss";
 
+import Head from 'next/head'
+
 import { supabase } from '@/utilities/supabase';
 import { useSessionContext } from '@supabase/auth-helpers-react';
 
