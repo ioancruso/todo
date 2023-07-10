@@ -102,7 +102,7 @@ function Register() {
             </div>
 
             {show && ( 
-                <Modal message={'The account has been created successfully. Check your email to confirm the account'} status='succes'/>
+                <Modal message={'The account has been created successfully.'} status='succes'/>
             )}
             {theError && ( 
                 <Modal message={'An error has occurred'} status='fail'/>
