@@ -2,7 +2,7 @@
     font-size: 1.2rem;
     display: grid;
     place-items: center;
-    height: 100%;
+    height: max-content;
     padding-block: 2rem;
     @media screen and (min-width: 768px) {
         height: 85%;
@@ -39,6 +39,7 @@
     }
 }
 .login {
+    padding-inline: 0.5rem;
     display: grid;
     text-align: center;
 }
