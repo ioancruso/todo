@@ -174,7 +174,10 @@ export default function Home() {
         setSelectedTodos([]);
     }
 
-    return (
+    return <>
+        <Head>
+            <title>Your Todos</title>
+        </Head>
         <div className={styles.container}>
             <h1>Your Todos</h1>
             <form onSubmit={handleSubmit} className={styles.addForm}>
@@ -231,5 +234,5 @@ export default function Home() {
                 </div>
             )}
         </div>
-    );
+    </>
 }
