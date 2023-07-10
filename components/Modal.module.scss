@@ -1,0 +1,29 @@
+.popup {
+    position: absolute;
+    top: 80%; 
+    right: 50%;
+    width: 80%;
+    text-align: center;
+    transform: translate(50%,-50%);
+    z-index: 3;
+    border-radius: 0.5em;
+    @media screen and (min-width: 768px) {
+        width: 50%;
+        top: 70%; 
+        right: 50%;
+        transform: translate(50%,-50%);
+    }
+    p {
+        font-size: 1.5rem;
+        color: var(--text-color);
+        padding: 1em;
+    }
+}
+  
+.succes {
+    background-color: rgba(58, 158, 33, 0.950);
+}
+
+.fail {
+    background-color: rgba(210, 64, 64, 0.950);
+}
