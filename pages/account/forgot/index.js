@@ -24,7 +24,7 @@ function Forgot() {
         e.preventDefault();
 
         const { error } = await supabase.auth.resetPasswordForEmail(email, {
-            redirectTo: 'localhost/change',
+            redirectTo: 'https://todo.icruso.ro/change',
         })
     
         if (error) {
