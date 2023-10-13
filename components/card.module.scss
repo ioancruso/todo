@@ -6,7 +6,7 @@
     display: grid;
     grid-template-rows: 3rem 6rem 3rem;
     background-color: var(--third-color);
-    transition: background-color 300ms linear, color 1s linear;
+    animation: fadeIn 1s;
     @media (min-width: 768px) {
         width: 70%;
         grid-template-rows: 3rem 4rem 3rem;
@@ -22,6 +22,14 @@
         overflow-wrap: break-word;
         word-wrap: break-word;
         word-break: break-all;
+    }
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
     }
 }
 .checkbox {
@@ -60,9 +68,9 @@
             &:hover {
                 transform: scale(1.1);
                 path {
-                    stroke: var(--button-color-hover);  
+                    stroke: var(--button-color-hover);
                 }
-            }  
+            }
         }
     }
     a {
@@ -73,9 +81,9 @@
             &:hover {
                 transform: scale(1.1);
                 path {
-                    fill: var(--button-color-hover);  
+                    fill: var(--button-color-hover);
                 }
-            }  
+            }
         }
     }
 }

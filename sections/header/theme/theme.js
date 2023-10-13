@@ -1,57 +1,74 @@
-'use client'
+import {useTheme} from "next-themes";
+import {useState, useEffect} from "react";
 
-import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
+import {motion} from "framer-motion";
 
-import Switch from "react-switch";
+import DarkSvg from "@/svgs/dark";
+import LightSvg from "@/svgs/light";
 
-import Darkmode from "@/svgs/dark"
-import Lightmode from "@/svgs/light";
+import styles from "./theme.module.scss";
 
-import styles from "./theme.module.scss"
-
-function ThemeSwitcher() {
-    
-    const { resolvedTheme, setTheme } = useTheme();
-    const [ mounted, setMounted ] = useState(false);
-
-    useEffect(() => {
-        const prefersDarkTheme = window.matchMedia("(prefers-color-scheme: dark)").matches;
-        if (resolvedTheme === "system" && typeof window !== "undefined") {
-            setTheme(prefersDarkTheme ? "dark" : "light");
-        }
-    }, [resolvedTheme, setTheme]);
+export default function ThemeSwitcher() {
+    const {resolvedTheme, setTheme} = useTheme();
+    const [theme, setTheTheme] = useState("none");
+    const [mounted, setMounted] = useState(false);
 
     const toggle = () => {
         setTheme(resolvedTheme === "light" ? "dark" : "light");
     };
 
     useEffect(() => {
-        setMounted(true) 
-    }, [])
-    
-    if (!mounted) {
-        return null
-    }
+        if (resolvedTheme) {
+            setTheTheme(resolvedTheme);
+        }
+    }, [resolvedTheme]);
 
-    return <>  
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
-        <div className={styles.wrapper}>
-                <Switch 
-                    onChange={toggle} 
-                    checked={resolvedTheme === 'light'} 
-                    offColor="#000" 
-                    onColor="#fff" 
-                    offHandleColor="#fff" 
-                    onHandleColor="#000" 
-                    uncheckedHandleIcon={<Darkmode/>}
-                    checkedHandleIcon={<Lightmode/>}
-                    uncheckedIcon={null} 
-                    checkedIcon={null} 
-                    className={styles.switcher}
-                />
-        </div>
-    </>
+    return (
+        <>
+            <div className={styles.wrapper}>
+                <div
+                    className={styles.switch}
+                    data-ison={theme}
+                    onClick={toggle}
+                >
+                    {mounted && (
+                        <>
+                            {theme === "light" && (
+                                <DarkSvg
+                                    className={styles.dark}
+                                    height={25}
+                                    width={25}
+                                    data-ison={theme}
+                                />
+                            )}
+                            <motion.div
+                                className={styles.handle}
+                                layout
+                                transition={spring}
+                                data-ison={theme}
+                            />
+                            {theme === "dark" && (
+                                <LightSvg
+                                    className={styles.light}
+                                    height={25}
+                                    width={25}
+                                    data-ison={theme}
+                                />
+                            )}
+                        </>
+                    )}
+                </div>
+            </div>
+        </>
+    );
 }
 
-export { ThemeSwitcher }
+const spring = {
+    type: "spring",
+    stiffness: 600,
+    damping: 50,
+};

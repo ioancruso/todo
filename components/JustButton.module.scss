@@ -1,25 +1,43 @@
 .button {
+    // Reset and Basics
     all: unset;
     cursor: pointer;
-    font-weight: bold;
+
+    // Box Model
     margin-block: 1rem;
     margin-inline: auto;
     padding-inline: 1rem;
     padding-block: 0.7rem;
-    border-radius: 0.5rem;
-    font-size: 1.1rem;
-    text-transform: uppercase;
-    background-color: var(--button-color);
-    color: var(--button-text-color);
     border: 2px solid var(--fourth-color);
+    border-radius: 0.5rem;
     box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease 0s;
+
+    // Typography
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: var(--button-text-color);
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+
+    // Colors
+    background-color: var(--button-color);
+
+    // States & Interactions
     &:hover {
         background-color: var(--button-color-hover);
+        transform: scale(1.02);
+        border-color: var(--button-color-hover);
     }
+
+    &:active {
+        transform: scale(0.98);
+        box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    // Media Queries
     @media (max-width: 768px) {
+        font-size: 1rem;
         padding-inline: 0.5rem;
         padding-block: 0.35rem;
-        font-size: 1rem;
     }
 }

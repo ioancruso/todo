@@ -1,30 +1,30 @@
 import styles from "./index.module.scss";
 
-import Head from 'next/head'
+import Head from "next/head";
 
-import { supabase } from '@/utilities/supabase';
-import { useSessionContext } from '@supabase/auth-helpers-react';
+import {supabase} from "@/utilities/supabase";
+import {useSessionContext} from "@supabase/auth-helpers-react";
 
-import { useRouter } from 'next/router';
-import { useState, useEffect } from 'react';
+import {useRouter} from "next/router";
+import {useState, useEffect} from "react";
 
-import { Card } from "@/components/card";
+import {Card} from "@/components/card";
 
 export default function Home() {
-    const { isLoading, session, error } = useSessionContext();
+    const {isLoading, session, error} = useSessionContext();
     const [mounted, setMounted] = useState(false);
     const [todos, setTodos] = useState([]);
     const [userid, setUserid] = useState();
     const [fetch, setFetch] = useState(false);
     const [input, setInput] = useState({
-        title: '',
-        content: ''
+        title: "",
+        content: "",
     });
     const router = useRouter();
     const [selectedTodos, setSelectedTodos] = useState([]);
 
     function handleChange(e) {
-        const { name, value } = e.target;
+        const {name, value} = e.target;
         setInput((prevInput) => ({
             ...prevInput,
             [name]: value,
@@ -34,7 +34,7 @@ export default function Home() {
     async function handleSubmit(event) {
         event.preventDefault();
 
-        const { data, error } = await supabase.from('todos').insert([
+        const {data, error} = await supabase.from("todos").insert([
             {
                 description: input.content,
                 userid: userid,
@@ -49,14 +49,14 @@ export default function Home() {
             getTodos();
             setInput((prevInput) => ({
                 ...prevInput,
-                content: '',
+                content: "",
             }));
         }
     }
 
     useEffect(() => {
         if (!session && mounted) {
-            router.push('/account/login');
+            router.push("/account/login");
         } else if (session && session.user) {
             setUserid(session.user.id);
         }
@@ -72,13 +72,12 @@ export default function Home() {
         setMounted(true);
     }, []);
 
-
     async function getTodos() {
-        let { data: todos, error } = await supabase
-            .from('todos')
-            .select('*')
-            .eq('userid', userid)
-            .order('id', { ascending: false });
+        let {data: todos, error} = await supabase
+            .from("todos")
+            .select("*")
+            .eq("userid", userid)
+            .order("id", {ascending: false});
 
         if (error) {
             console.log(error);
@@ -88,10 +87,7 @@ export default function Home() {
     }
 
     async function deleteCard(id) {
-        const { error } = await supabase
-            .from('todos')
-            .delete()
-            .eq('id', id);
+        const {error} = await supabase.from("todos").delete().eq("id", id);
 
         if (error) {
             console.error(error);
@@ -102,24 +98,26 @@ export default function Home() {
 
     async function handleMarkAsDone() {
         for (const todoId of selectedTodos) {
-            const { error } = await supabase
-                .from('todos')
-                .update({ solved: true })
-                .eq('id', todoId);
+            const {error} = await supabase
+                .from("todos")
+                .update({solved: true})
+                .eq("id", todoId);
 
             if (error) {
                 console.error(error);
             } else {
-                setTodos((prevTodos) => prevTodos.map((todo) => {
-                    if (todo.id === todoId) {
-                        return {
-                            ...todo,
-                            solved: true,
-                        };
-                    } else {
-                        return todo;
-                    }
-                }));
+                setTodos((prevTodos) =>
+                    prevTodos.map((todo) => {
+                        if (todo.id === todoId) {
+                            return {
+                                ...todo,
+                                solved: true,
+                            };
+                        } else {
+                            return todo;
+                        }
+                    })
+                );
             }
         }
         setSelectedTodos([]);
@@ -127,24 +125,26 @@ export default function Home() {
 
     async function handleMarkAsUndone() {
         for (const todoId of selectedTodos) {
-            const { error } = await supabase
-                .from('todos')
-                .update({ solved: false })
-                .eq('id', todoId);
+            const {error} = await supabase
+                .from("todos")
+                .update({solved: false})
+                .eq("id", todoId);
 
             if (error) {
                 console.error(error);
             } else {
-                setTodos((prevTodos) => prevTodos.map((todo) => {
-                    if (todo.id === todoId) {
-                        return {
-                            ...todo,
-                            solved: false,
-                        };
-                    } else {
-                        return todo;
-                    }
-                }));
+                setTodos((prevTodos) =>
+                    prevTodos.map((todo) => {
+                        if (todo.id === todoId) {
+                            return {
+                                ...todo,
+                                solved: false,
+                            };
+                        } else {
+                            return todo;
+                        }
+                    })
+                );
             }
         }
         setSelectedTodos([]);
@@ -158,7 +158,7 @@ export default function Home() {
                 return [...prevSelectedTodos, todoId];
             }
         });
-      }
+    }
 
     function handleSelectAll() {
         if (todos.length === selectedTodos.length) {
@@ -176,65 +176,85 @@ export default function Home() {
         setSelectedTodos([]);
     }
 
-    return <>
-        <Head>
-            <title>Your Todos</title>
-        </Head>
-        <div className={styles.container}>
-            <h1>Your Todos</h1>
-            <form onSubmit={handleSubmit} className={styles.addForm}>
-                <input
-                    name="content"
-                    placeholder="Your todo"
-                    minLength={4}
-                    maxLength={110}
-                    required
-                    value={input.content}
-                    onChange={handleChange}
-                    className={styles.content}
-                />
-                <button type="submit">Add</button>
-            </form>
-            {fetch && (
-                <div className={styles.control}>
-                    {todos.length > 0 && <>
+    return (
+        <>
+            <Head>
+                <title>Your Todos</title>
+            </Head>
+            <div className={styles.container}>
+                <h1>Your Todos</h1>
+                <form onSubmit={handleSubmit} className={styles.addForm}>
+                    <input
+                        name="content"
+                        placeholder="Your todo"
+                        minLength={4}
+                        maxLength={110}
+                        required
+                        value={input.content}
+                        onChange={handleChange}
+                        className={styles.content}
+                    />
+                    <button type="submit">Add</button>
+                </form>
+                {fetch && todos.length > 0 ? (
+                    <>
+                        <div className={styles.control}>
                             {todos.length === selectedTodos.length ? (
-                                <button onClick={handleSelectAll}>Deselect all</button>
+                                <button onClick={handleSelectAll}>
+                                    Deselect all
+                                </button>
                             ) : (
-                                <button onClick={handleSelectAll}>Select all</button>
+                                <button onClick={handleSelectAll}>
+                                    Select all
+                                </button>
                             )}
                             <div className={styles.options}>
-                                <button title="Delete selected todos"  onClick={handleDeleteSelected}>Delete</button>
-                                {
-                                    selectedTodos.length === 0 || selectedTodos.some((todoId) => {
-                                        const todo = todos.find((todo) => todo.id === todoId);
-                                        return todo && !todo.solved;
-                                      }) ? (
-                                        <button title="Mark selected todos as finished" onClick={handleMarkAsDone}>Mark as finished</button>
-                                    ) : (
-                                        <button title="Mark selected todos as not finished" onClick={handleMarkAsUndone}>Mark as not finished</button>
-                                    )
-                                }
+                                <button
+                                    title="Delete selected todos"
+                                    onClick={handleDeleteSelected}
+                                >
+                                    Delete
+                                </button>
+                                {selectedTodos.length === 0 ||
+                                selectedTodos.some((todoId) => {
+                                    const todo = todos.find(
+                                        (todo) => todo.id === todoId
+                                    );
+                                    return todo && !todo.solved;
+                                }) ? (
+                                    <button
+                                        title="Mark selected todos as finished"
+                                        onClick={handleMarkAsDone}
+                                    >
+                                        Mark as finished
+                                    </button>
+                                ) : (
+                                    <button
+                                        title="Mark selected todos as not finished"
+                                        onClick={handleMarkAsUndone}
+                                    >
+                                        Mark as not finished
+                                    </button>
+                                )}
                             </div>
-                    </>}
-                </div>
-            )}
-            {fetch && !todos.length ? (
-                <div className={styles.none}>None yet</div>
-            ) : (
-                <div className={styles.todos}>
-                    {todos.map((todo) => (
-                        <Card
-                            data={todo}
-                            key={todo.id}
-                            onDelete={deleteCard}
-                            onSelect={handleSelect}
-                            selected={selectedTodos.includes(todo.id)}
-                            isDone={todo.solved}
-                        />
-                    ))}
-                </div>
-            )}
-        </div>
-    </>
+                        </div>
+                        <div className={styles.todos}>
+                            {todos.map((todo) => (
+                                <Card
+                                    data={todo}
+                                    key={todo.id}
+                                    onDelete={deleteCard}
+                                    onSelect={handleSelect}
+                                    selected={selectedTodos.includes(todo.id)}
+                                    isDone={todo.solved}
+                                />
+                            ))}
+                        </div>
+                    </>
+                ) : (
+                    <div className={styles.none}>None yet</div>
+                )}
+            </div>
+        </>
+    );
 }

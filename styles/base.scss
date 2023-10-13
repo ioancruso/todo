@@ -1,57 +1,66 @@
+* {
+    -webkit-transition: background-color 200ms ease-in, color 20ms linear;
+    -moz-transition: background-color 200ms ease-in, color 20ms linear;
+    -o-transition: background-color 200ms ease-in, color 20ms linear;
+    -ms-transition: background-color 200ms ease-in, color 20ms linear;
+    transition: background-color 200ms ease-in, color 20ms linear;
+}
+// Dark Mode
+[data-theme="dark"] {
+    --primary-color: #282c34;
+    --secondary-color: #22272e;
+    --third-color: #4a4f5b;
+    --fourth-color: #5a5f6b;
+
+    --text-color: #c1c6ce;
+    --clickable-color: #72aee6;
+    --clickable-color-hover: #558bbd;
+
+    --button-text-color: #ffffff;
+    --button-color: #ea7d86;
+    --button-color-hover: #d46570;
+}
+
+// Light Mode
+[data-theme="light"] {
+    --primary-color: #fafafa;
+    --secondary-color: #e5e5e5;
+    --third-color: #d0d0d0;
+    --fourth-color: #b0b0b0;
+
+    --text-color: #3f4147;
+    --clickable-color: #3a75c4;
+    --clickable-color-hover: #295b9e;
+
+    --button-text-color: #ffffff;
+    --button-color: #ea7d86;
+    --button-color-hover: #d46570;
+}
+
+// Todo's colors
 :root {
-    --primary-color: #282C34;
-    --secondary-color: #22272E;
-    --third-color: #4A4F5B;
-    --fourth-color: #5A5F6B;
-
-    --text-color: #DDDDDD;
-    --clickable-color: #61AFEF;
-    --clickable-color-hover: #4B77BE;
-
-    --button-text-color: #FFFFFF;
-    --button-color: #E06C75;
-    --button-color-hover: #BE5046;
-
-    --color1: #FFA500; /* Orange */
+    --color1: #ffa500; /* Orange */
     --textcolor1: #333333; /* Black */
-  
-    --color2: #00CED1; /* Dark Turquoise */
+
+    --color2: #00ced1; /* Dark Turquoise */
     --textcolor2: #333333; /* White */
-  
-    --color3: #FF69B4; /* Hot Pink */
+
+    --color3: #ff69b4; /* Hot Pink */
     --textcolor3: #333333; /* White */
-  
+
     --color4: #008080; /* Teal */
     --textcolor4: #ffffff; /* White */
-  
-    --color5: #32CD32; /* Lime Green */
+
+    --color5: #32cd32; /* Lime Green */
     --textcolor5: #333333; /* Black */
 }
-[data-theme="light"] {
-    --primary-color: #FAFAFA;
-    --secondary-color: #E5E5E5;
-    --third-color: #D0D0D0;
-    --fourth-color: #B0B0B0;
 
-    --text-color: #333333;
-    --clickable-color: #61AFEF;
-    --clickable-color-hover: #4B77BE;
-
-    --button-text-color: #FFFFFF;
-    --button-color: #E06C75;
-    --button-color-hover: #BE5046;
-}
 body {
     margin: 0;
     min-height: 100dvh;
     background-color: var(--secondary-color);
     color: var(--text-color);
     font-family: system-ui, sans-serif;
-    -webkit-transition: background-color 300ms linear, color 1s linear;
-    -moz-transition: background-color 300ms linear, color 1s linear;
-    -o-transition: background-color 300ms linear, color 1s linear;
-    -ms-transition: background-color 300ms linear, color 1s linear;
-    transition: background-color 300ms linear, color 1s linear;
 }
 #__next {
     display: grid;
