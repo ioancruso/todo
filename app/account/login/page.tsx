@@ -26,7 +26,7 @@ export default async function Autentificare() {
 			<div className={styles.orSeparator}>or</div>
 			<div className={styles.register}>
 				<h2>You don't have an account yet?</h2>
-				<Button text="Înregistrează-te" href="/account/register" />
+				<Button text="Register" href="/account/register" />
 			</div>
 		</main>
 	);
