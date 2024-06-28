@@ -23,9 +23,9 @@ export default async function Autentificare() {
 		<main className={styles.loginPage}>
 			<h1>Login</h1>
 			<AuthForm />
-			<div className={styles.orSeparator}>sau</div>
+			<div className={styles.orSeparator}>or</div>
 			<div className={styles.register}>
-				<h2>Nu ai incă un cont?</h2>
+				<h2>You don't have an account yet?</h2>
 				<Button text="Înregistrează-te" href="/account/register" />
 			</div>
 		</main>

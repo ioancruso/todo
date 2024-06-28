@@ -25,9 +25,9 @@ export default async function Register() {
 		<main className={styles.registerPage}>
 			<h1>Register</h1>
 			<RegForm />
-			<div className={styles.orSeparator}>sau</div>
+			<div className={styles.orSeparator}>or</div>
 			<div className={styles.login}>
-				<h2>Ai deja cont?</h2>
+				<h2>Do you already have an account?</h2>
 				<Button text="Autentifică-te" href="/autentificare" />
 			</div>
 		</main>
