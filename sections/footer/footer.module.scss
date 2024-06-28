@@ -1,0 +1,12 @@
+.footer {
+	background-color: var(--secondary-color);
+	border-start-end-radius: 0.5rem;
+	border-start-start-radius: 0.5rem;
+	border-block-start: 1px solid var(--fourth-color);
+	box-shadow: 0 0 0.4375rem var(--box-shadow-color);
+}
+.info {
+	text-align: center;
+	padding: 1em;
+	font-weight: bold;
+}

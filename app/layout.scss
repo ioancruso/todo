@@ -1,0 +1,136 @@
+* {
+	-webkit-transition: background-color 200ms ease-in, color 20ms linear;
+	-moz-transition: background-color 200ms ease-in, color 20ms linear;
+	-o-transition: background-color 200ms ease-in, color 20ms linear;
+	-ms-transition: background-color 200ms ease-in, color 20ms linear;
+	transition: background-color 200ms ease-in, color 20ms linear;
+
+	box-sizing: border-box;
+}
+
+/* Dark Mode */
+[data-theme="dark"] {
+	--primary-color: #1e1e2f;
+	--secondary-color: #2a2a3b;
+	--third-color: #3a3a4f;
+	--fourth-color: #4a4a5f;
+
+	--text-color: #e8e8f2;
+	--clickable-color: #9370db; /* Medium Purple */
+	--clickable-color-hover: #7b68ee; /* Medium Slate Blue */
+
+	--button-text-color: #ffffff;
+	--button-color: #6a0dad; /* Dark purple */
+	--button-color-hover: #4b0082; /* Darker purple */
+
+	--alert-color: #e53935; /* Bright red for alert */
+	--alert-color-hover: #d32f2f; /* Darker red for hover */
+
+	--success-color: #43a047; /* Bright green for success */
+	--success-color-hover: #388e3c; /* Darker green for hover */
+
+	--box-shadow-color: rgba(0, 0, 0, 0.5); /* Dark shadow for dark mode */
+}
+
+/* Light Mode */
+[data-theme="light"] {
+	--primary-color: #f3f0ff;
+	--secondary-color: #e5e1ff;
+	--third-color: #d7d2ff;
+	--fourth-color: #c9c4ff;
+
+	--text-color: #2e2e3e;
+	--clickable-color: #9370db; /* Medium Purple */
+	--clickable-color-hover: #7b68ee; /* Medium Slate Blue */
+
+	--button-text-color: #ffffff;
+	--button-color: #a68adb;
+	--button-color-hover: #8962cd;
+
+	--alert-color: rgba(255, 99, 71, 0.9); /* More distinct bright alert color */
+	--alert-color-hover: rgba(
+		255,
+		69,
+		58,
+		1
+	); /* Slightly darker alert color for hover */
+
+	--success-color: rgba(
+		0,
+		220,
+		100,
+		0.9
+	); /* More distinct bright success color */
+	--success-color-hover: rgba(
+		0,
+		200,
+		83,
+		1
+	); /* Slightly darker success color for hover */
+
+	--box-shadow-color: rgba(
+		208,
+		208,
+		208,
+		0.6
+	); /* Light grey shadow for light mode */
+}
+
+/* Todo's colors */
+:root {
+	--modal-space: 32px;
+
+	@media screen and (max-width: 750px) {
+		--modal-space: 37px;
+	}
+
+	@media screen and (max-width: 500px) {
+		--modal-space: 57px;
+	}
+
+	@media screen and (max-width: 300px) {
+		--modal-space: 67px;
+	}
+
+	--color1: #ffa07a; /* Light Salmon */
+	--text-color1: #333333; /* Black */
+
+	--color2: #66cdaa; /* Medium Aquamarine */
+	--text-color2: #333333; /* Black */
+
+	--color3: #ff69b4; /* Hot Pink */
+	--text-color3: #333333; /* Black */
+
+	--color4: #4682b4; /* Steel Blue */
+	--text-color4: #ffffff; /* White */
+
+	--color5: #32cd32; /* Lime Green */
+	--text-color5: #333333; /* Black */
+}
+
+/* Apply scrollbar width to all elements */
+html {
+	scrollbar-width: thin; /* For Firefox */
+}
+
+body {
+	margin: 0;
+	background-color: var(--primary-color);
+	color: var(--text-color);
+	font-family: "Calibri", sans-serif;
+	display: grid;
+	min-height: 100dvh;
+	grid-template-rows: min-content 1fr min-content;
+	overflow-y: scroll; /* Always show scrollbar */
+}
+
+/* Webkit browsers */
+body::-webkit-scrollbar {
+	width: 12px;
+}
+
+input {
+	&::placeholder {
+		color: var(--text-color);
+	}
+}

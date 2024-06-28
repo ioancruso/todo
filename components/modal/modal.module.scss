@@ -1,0 +1,51 @@
+.modal {
+	border-radius: 8px;
+	text-align: center;
+	padding-inline: 10px;
+	margin: 15px;
+	color: var(--text-color);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: var(--modal-space);
+
+	a {
+		all: unset;
+		cursor: pointer;
+		text-decoration: underline;
+	}
+
+	p {
+		all: unset;
+		font-size: 18px; // Default font size
+
+		@media screen and (max-width: 600px) {
+			font-size: 16px; // Adjust font size for smaller screens
+		}
+
+		@media screen and (max-width: 400px) {
+			font-size: 14px; // Further adjust font size for very small screens
+		}
+	}
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+.succes {
+	background-color: var(--success-color);
+	animation: fadeIn 1s ease-in-out forwards;
+	box-shadow: 0 0 15px var(--box-shadow-color);
+}
+
+.fail {
+	background-color: var(--alert-color);
+	animation: fadeIn 1s ease-in-out forwards;
+	box-shadow: 0 0 15px var(--box-shadow-color);
+}

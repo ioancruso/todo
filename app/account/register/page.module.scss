@@ -1,0 +1,103 @@
+.registerPage {
+	display: grid;
+	place-items: center;
+	height: 100%;
+	font-size: 1.2rem;
+	h1 {
+		all: unset;
+		font-weight: bold;
+		font-size: 1.8rem;
+		text-align: center;
+		margin-block: 30px;
+	}
+}
+.orSeparator {
+	display: flex;
+	align-items: center;
+	text-align: center;
+	font-size: 1.3rem;
+	margin-block-end: 1.3rem;
+	width: 35%;
+
+	@media screen and (max-width: 750px) {
+		width: 40%;
+	}
+
+	@media screen and (max-width: 500px) {
+		width: 50%;
+	}
+
+	@media screen and (max-width: 300px) {
+		width: 60%;
+	}
+
+	&::before,
+	&::after {
+		content: "";
+		flex: 1;
+		border-bottom: 1px solid var(--fourth-color);
+	}
+
+	&:not(:empty)::before {
+		margin-right: 0.75em;
+	}
+
+	&:not(:empty)::after {
+		margin-left: 0.75em;
+	}
+}
+
+.registerForm {
+	display: grid;
+	text-align: center;
+	width: 100%;
+	.invalid {
+		border-color: var(--alert-color);
+	}
+	input {
+		border: 0;
+		text-align: center;
+		border-radius: 0.5rem;
+		font-size: 1rem;
+		width: 90%;
+		max-width: 30rem;
+		min-height: 2.5rem;
+		justify-self: center;
+		background-color: var(--primary-color);
+		color: var(--text-color);
+		border: 1px solid var(--fourth-color);
+		&::placeholder {
+			color: var(--text-color);
+		}
+	}
+	label {
+		font-weight: bold;
+		&:not(:first-child) {
+			margin-block-start: 1rem;
+		}
+		margin-block-end: 0.2rem;
+	}
+}
+.login {
+	display: grid;
+	margin-block: 30px;
+	h2 {
+		padding: 0;
+		margin: 0;
+	}
+}
+.errorContainer {
+	height: 1.25rem;
+}
+
+.errorMessage {
+	color: var(--alert-color);
+	font-size: 0.95rem;
+	font-weight: bold;
+}
+.empty {
+	border-radius: 8px;
+	padding-inline: 10px;
+	margin-block: 15px;
+	min-height: var(--modal-space);
+}
